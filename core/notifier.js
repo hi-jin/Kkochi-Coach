@@ -1,6 +1,6 @@
 export default class Notifier {
     constructor() {
-        this.callbacks = [];
+        this._callbacks = [];
     };
 
     /**
@@ -9,14 +9,14 @@ export default class Notifier {
      * @param {Function} callback 
      */
     addListener(callback) {
-        this.callbacks.push(callback);
+        this._callbacks.push(callback);
     }
 
     /**
      * callbacks 전체 실행
      */
     notifyListener() {
-        for (const callback of callbacks) {
+        for (const callback of this._callbacks) {
             callback();
         }
     }
