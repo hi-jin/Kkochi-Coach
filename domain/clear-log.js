@@ -2,13 +2,11 @@ export default class ClearLog {
     /**
      * 
      * @param {String} id auto increment id
-     * @param {String} goalId 
      * @param {String} todoId 
      * @param {Date} date 
      */
-    constructor(id, goalId, todoId, date) {
+    constructor(id, todoId, date) {
         this.id = id;
-        this.goalId = goalId;
         this.todoId = todoId;
         this.date = date;
     }
@@ -20,7 +18,6 @@ export default class ClearLog {
     static fromJson(json) {
         return new ClearLog(
             json["id"],
-            json["goal_id"],
             json["todo_id"],
             new Date(json["date"]),
         );
@@ -29,7 +26,6 @@ export default class ClearLog {
     toJson() {
         return JSON.stringify({
             "id": this.id,
-            "goal_id": this.goalId,
             "todo_id": this.todoId,
             "date": this.date,
         });
