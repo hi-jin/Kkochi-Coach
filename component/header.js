@@ -1,5 +1,6 @@
 import Component from "../core/component.js";
 import UserData from "../data/user-data.js";
+import { getCurrentUserName } from "../repo/auth-repo.js";
 
 export default class Header extends Component {
     /**
@@ -13,6 +14,10 @@ export default class Header extends Component {
         const userData = new UserData();
         this.setState({ "userData": userData });
         userData.addListener(() => { this.setState({ "userData": userData }) });
+        getCurrentUserName().then(data => {
+            if (data === null) return;
+            userData.userName = data;
+        });
     }
 
     render() {

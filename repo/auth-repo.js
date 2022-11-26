@@ -50,3 +50,20 @@ export async function login(id, pw) {
         request.send(formData);
     });
 }
+
+export async function getCurrentUserName() {
+    return new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState !== 4) return;
+            if (request.status !== 200) resolve(null);
+
+            const response = request.responseText.trim();
+            if (response === "") resolve(null);
+
+            resolve(response);
+        }
+        request.open("GET", "./repo/php/get-current-user-name.php");
+        request.send();
+    });
+}
