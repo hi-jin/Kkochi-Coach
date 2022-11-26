@@ -21,9 +21,7 @@ export default class Header extends Component {
     }
 
     render() {
-        while (this.html.hasChildNodes()) {
-            this.html.removeChild(this.html.firstChild);
-        }
+        super.render();
         this.html.appendChild(this._homeLink.call(this));
 
         if (this.state["userData"].userName !== undefined) {

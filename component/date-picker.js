@@ -19,10 +19,7 @@ export default class DatePicker extends Component {
     }
 
     render() {
-        while (this.html.hasChildNodes()) {
-            this.html.removeChild(this.html.firstChild);
-        }
-
+        super.render();
         for (let offset = MAX_DATE_PICKER_LENGTH - 1; offset >= 0; offset--) {
             const date = getOffsetDate(this.today, -1 * offset);
             this.html.appendChild(this._datePickerElement(date));

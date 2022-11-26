@@ -16,5 +16,10 @@ export default class Component {
     /**
      * this.state를 이용하여 화면에 출력
      */
-    render() { }
+    render() {
+        if (this.html === undefined || this.html === null) return;
+        while (this.html.hasChildNodes()) {
+            this.html.removeChild(this.html.firstChild);
+        }
+    }
 }

@@ -17,9 +17,7 @@ export default class LoginForm extends Component {
     }
 
     render() {
-        while (this.html.hasChildNodes()) {
-            this.html.removeChild(this.html.firstChild);
-        }
+        super.render();
 
         this.html.appendChild(this._idField.call(this));
         this.html.appendChild(this._pwField.call(this));
