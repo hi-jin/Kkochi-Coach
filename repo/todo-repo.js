@@ -1,3 +1,4 @@
+import ClearLog from "../domain/clear-log.js";
 import Todo from "../domain/todo.js";
 import { dateToString } from "../util/date-util.js";
 
@@ -64,6 +65,36 @@ export async function loadTodoList() {
             resolve(result);
         }
         request.open("GET", "./repo/php/load-todo-list.php");
+        request.send();
+    });
+}
+
+/**
+ * 로그인된 유저의 클리어 로그를 반환
+ * 
+ * @returns {List<ClearLog>}
+ */
+ export async function loadClearLog() {
+    return new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState !== 4) return;
+            if (request.status !== 200) reject("서버와의 연결을 확인해주세요.");
+
+            const response = request.responseText.trim();
+            if (response === "login-failed") {
+                reject("로그인 후 이용해주세요.");
+                location.href = "./login.html";
+            }
+            if (response === "internal-error") reject("서버 오류. 관리자에게 문의해주세요.");
+
+            const result = [];
+            for (const json of JSON.parse(response)) {
+                result.push(ClearLog.fromJson(json));
+            }
+            resolve(result);
+        }
+        request.open("GET", "./repo/php/load-clear-log.php");
         request.send();
     });
 }

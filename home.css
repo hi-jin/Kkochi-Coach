@@ -1,3 +1,75 @@
 body {
     padding-top: 70px;
 }
+
+#todo-summary-view {
+    padding: 10px 20px;
+}
+
+#todo-summary-view_summary-wrapper {
+    background-color: var(--light-grey);
+    min-height: 100px;
+
+    padding: 10px;
+    margin: 10px 0;
+}
+
+#date-picker {
+    padding: 10px 20px 0 20px;
+}
+
+.todo-summary-view_todo-summary {
+    padding: 10px 10px 0 10px;
+}
+
+#todo-summary-view_add-new-goal {
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    font-size: var(--middle-text);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+#todo-summary-view_add-new-goal:hover {
+    box-shadow: var(--default-shadow);
+}
+
+.todo-summary-view_todo {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+
+    position: relative;
+}
+
+.todo-summary-view_todo:hover {
+    box-shadow: var(--default-shadow);
+}
+
+.todo-summary-view_goal-span {
+    margin-right: 10px;
+    font-size: var(--middle-text);
+    color: var(--grey);
+}
+
+.todo-summary-view_what-span {
+    font-size: var(--middle-text);
+}
+
+.todo-summary-view_check-span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    background-image: url("./asset/checkbox.png");
+    background-size: contain;
+
+    position: absolute;
+    right: 10px;
+}
+
+.todo-summary-view_check-span[cleared=true] {
+    background-color: var(--primary);
+}
