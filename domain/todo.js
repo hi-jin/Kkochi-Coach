@@ -29,6 +29,8 @@ export default class Todo {
      */
     static fromJson(json) {
         if (json === null) return null;
+        let endDate = null;
+        if (json["end_date"] !== undefined) endDate = new Date(json["end_date"]);
         return new Todo(
             json["id"],
             json["goal"],
@@ -38,7 +40,7 @@ export default class Todo {
             json["repeat_day_of_week"],
             json["desc"],
             new Date(json["start_date"]),
-            new Date(json["end_date"]),
+            endDate,
         );
     }
 
