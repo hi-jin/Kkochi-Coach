@@ -1,5 +1,6 @@
 import Component from "../core/component.js";
-import { register } from "../repo/auth-repo.js";
+import UserData from "../data/user-data.js";
+import { login, register } from "../repo/auth-repo.js";
 
 export default class LoginForm extends Component {
     /**
@@ -9,7 +10,8 @@ export default class LoginForm extends Component {
     constructor(loginForm) {
         super();
         this.html = loginForm;
-        this.setState();
+        const userData = new UserData();
+        this.setState({ "userData": userData });
         this.id = "";
         this.pw = "";
     }
@@ -66,7 +68,19 @@ export default class LoginForm extends Component {
         input.type = "button";
         input.value = "로그인";
         input.addEventListener("click", () => {
-
+            this.id = this.id.trim();
+            this.pw = this.pw.trim();
+            if (this.id === "" || this.pw === "") {
+                alert("아이디와 비밀번호를 모두 입력해주세요.");
+                return;
+            }
+            login(this.id, this.pw).then(
+                data => {
+                    alert(data);
+                    this.state["userData"].userName = this.id;
+                },
+                reason => alert(reason),
+            );
         });
         return input;
     }

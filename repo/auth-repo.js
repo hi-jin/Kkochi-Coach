@@ -24,3 +24,29 @@ export async function register(id, pw) {
         request.send(formData);
     });
 }
+
+/**
+ * 
+ * @param {String} id 
+ * @param {String} pw 
+ */
+export async function login(id, pw) {
+    return new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState !== 4) return;
+            if (request.status !== 200) resolve("서버와의 연결을 확인해주세요.");
+
+            const response = request.responseText.trim();
+            if (response === "invalid-form") reject("아이디, 비밀번호를 올바르게 입력해주세요.");
+            if (response === "login-failed") reject("아이디, 비밀번호를 확인해주세요.");
+
+            resolve("로그인 완료");
+        }
+        const formData = new FormData();
+        formData.append("id", id);
+        formData.append("pw", pw);
+        request.open("POST", "./repo/php/login.php");
+        request.send(formData);
+    });
+}
