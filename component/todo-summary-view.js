@@ -31,7 +31,9 @@ export default class TodoSummaryView extends Component {
         const div = document.createElement("div");
         div.classList.add("todo-summary-view_todo-summary");
 
-        const todoList = this.state["homeData"].todoList.filter(todo => todo.repeatDayOfWeek.includes(this.state["homeData"].selectedDate.getDay()));
+        const todoList = this.state["homeData"].todoList
+            .filter(todo => todo.repeatDayOfWeek.includes(this.state["homeData"].selectedDate.getDay()))
+            .filter(todo => todo.endDate === null);
         const clearLog = this.state["homeData"].clearLog;
         for (const todo of todoList) {
             const todoDiv = document.createElement("div");
