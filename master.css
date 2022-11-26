@@ -66,3 +66,31 @@ html, body {
 }
 
 /* HEADER end */
+
+
+/* DATE_PICKER start */
+
+.date-picker_date-picker-element {
+    display: inline-block;
+    padding: 15px;
+    margin: 5px;
+
+    background-color: var(--grey);
+    color: white;
+    font-size: var(--middle-text);
+    text-align: center;
+    vertical-align: middle;
+
+    border-radius: 5px;
+}
+
+.date-picker_date-picker-element:hover {
+    box-shadow: var(--default-shadow);
+}
+
+.date-picker_date-picker-element[selected=true] {
+    box-shadow: var(--default-shadow);
+    background-color: var(--primary);
+}
+
+/* DATE_PICKER end */
