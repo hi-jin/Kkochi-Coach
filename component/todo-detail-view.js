@@ -1,6 +1,6 @@
 import Component from "../core/component.js";
 import HomeData from "../data/home-data.js";
-import { loadTodoList, removeTodo } from "../repo/todo-repo.js";
+import { finishTodo, loadTodoList, removeTodo } from "../repo/todo-repo.js";
 
 export default class TodoDetailView extends Component {
     /**
@@ -127,6 +127,17 @@ export default class TodoDetailView extends Component {
             input.type = "button";
             input.id = "todo-detail-view_finish-button";
             input.value = "목표종료";
+
+            input.addEventListener("click", () => {
+                finishTodo(this.selectedTodo.id).then(
+                    data => {
+                        this.state["homeData"].selectedTodo = null;
+                        loadTodoList().then(value => this.state["homeData"].todoList = value);
+                    },
+                    reason => alert(reason),
+                );
+            });
+
             return input;
         }
 
