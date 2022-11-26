@@ -1,4 +1,5 @@
 import Component from "../core/component.js";
+import { register } from "../repo/auth-repo.js";
 
 export default class LoginForm extends Component {
     /**
@@ -48,7 +49,13 @@ export default class LoginForm extends Component {
         input.type = "button";
         input.value = "회원가입";
         input.addEventListener("click", () => {
-
+            this.id = this.id.trim();
+            this.pw = this.pw.trim();
+            if (this.id === "" || this.pw === "") {
+                alert("아이디와 비밀번호를 모두 입력해주세요.");
+                return;
+            }
+            register(this.id, this.pw).then(data => alert(data), reason => alert(reason));
         });
         return input;
     }
@@ -59,7 +66,7 @@ export default class LoginForm extends Component {
         input.type = "button";
         input.value = "로그인";
         input.addEventListener("click", () => {
-            
+
         });
         return input;
     }
