@@ -78,6 +78,7 @@ export default class LoginForm extends Component {
                 data => {
                     alert(data);
                     this.state["userData"].userName = this.id;
+                    location.href = "./home.html";
                 },
                 reason => alert(reason),
             );
