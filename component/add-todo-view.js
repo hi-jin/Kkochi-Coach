@@ -1,4 +1,6 @@
 import Component from "../core/component.js";
+import Todo from "../domain/todo.js";
+import { addTodo } from "../repo/todo-repo.js";
 import { myPrompt } from "../util/my-prompt.js";
 
 export default class AddTodoView extends Component {
@@ -277,6 +279,39 @@ export default class AddTodoView extends Component {
         input.id = "add-todo-view_submit";
         input.type = "button";
         input.value = "추가하기";
+        input.addEventListener("click", async () => {
+            const goal = this.state["goal"];
+            const what = this.state["what"];
+            const where = this.state["where"];
+            const when = this.state["when"];
+            const repeatDayOfWeek = this.state["repeatDayOfWeek"]
+            const desc = this.state["desc"];
+
+            if (goal === "" || what === "" || where === "" || when === "" || desc === "") {
+                alert("모든 항목을 입력해주세요.");
+                return;
+            }
+            let flag = true;
+            for (let i = 0; i < 7; i++) {
+                if (repeatDayOfWeek[i]) {
+                    flag = false;
+                }
+            }
+            if (flag) {
+                alert("반복 요일을 하나 이상 선택해주세요.");
+            }
+
+            const _repeatDayOfWeek = [];
+            for (let i = 0; i < 7; i++) {
+                if (repeatDayOfWeek[i]) {
+                    _repeatDayOfWeek.push(i);
+                }
+            }
+
+            const objTodo = new Todo("-1", goal, what, where, when, _repeatDayOfWeek, desc, new Date(), null);
+
+            await addTodo(objTodo);
+        });
         return input;
     }
 }

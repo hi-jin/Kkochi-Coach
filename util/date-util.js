@@ -29,3 +29,11 @@ export function compareDate(date1, date2) {
 
     return true;
 }
+
+/**
+ * 
+ * @param {Date} date 
+ */
+export function dateToString(date) {
+    return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+}
