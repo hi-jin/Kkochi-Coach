@@ -1,5 +1,6 @@
 import Component from "../core/component.js";
 import HomeData from "../data/home-data.js";
+import { loadTodoList, removeTodo } from "../repo/todo-repo.js";
 
 export default class TodoDetailView extends Component {
     /**
@@ -69,10 +70,10 @@ export default class TodoDetailView extends Component {
             span.addEventListener("click", () => {
                 if (repeatDayOfWeek[i]) {
                     repeatDayOfWeek[i] = false;
-                    this.setState({"repeatDayOfWeek": repeatDayOfWeek});
+                    this.setState({ "repeatDayOfWeek": repeatDayOfWeek });
                 } else {
                     repeatDayOfWeek[i] = true;
-                    this.setState({"repeatDayOfWeek": repeatDayOfWeek});
+                    this.setState({ "repeatDayOfWeek": repeatDayOfWeek });
                 }
             });
 
@@ -85,12 +86,12 @@ export default class TodoDetailView extends Component {
     _descDiv() {
         const div = document.createElement("div");
         div.classList.add("todo-detail-view_div");
-        
+
         div.appendChild(document.createTextNode("상세 내용"));
         div.appendChild(document.createElement("br"));
         div.appendChild(document.createElement("br"));
         div.appendChild(document.createTextNode(this.selectedTodo.desc));
-        
+
         return div;
     }
 
@@ -107,6 +108,17 @@ export default class TodoDetailView extends Component {
             input.type = "button";
             input.id = "todo-detail-view_remove-button";
             input.value = "삭제하기";
+
+            input.addEventListener("click", () => {
+                removeTodo(this.selectedTodo.id).then(
+                    data => {
+                        this.state["homeData"].selectedTodo = null;
+                        loadTodoList().then(value => this.state["homeData"].todoList = value);
+                    },
+                    reason => alert(reason),
+                )
+            });
+
             return input;
         }
 
