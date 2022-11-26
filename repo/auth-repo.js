@@ -67,3 +67,16 @@ export async function getCurrentUserName() {
         request.send();
     });
 }
+
+export async function logout() {
+    return new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState !== 4) return;
+            
+            resolve();
+        }
+        request.open("POST", "./repo/php/logout.php");
+        request.send();
+    });
+}

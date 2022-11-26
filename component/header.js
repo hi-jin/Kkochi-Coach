@@ -1,6 +1,6 @@
 import Component from "../core/component.js";
 import UserData from "../data/user-data.js";
-import { getCurrentUserName } from "../repo/auth-repo.js";
+import { getCurrentUserName, logout } from "../repo/auth-repo.js";
 
 export default class Header extends Component {
     /**
@@ -67,8 +67,20 @@ export default class Header extends Component {
         const span = document.createElement("span");
         span.id = "header_user-name";
         span.appendChild(document.createTextNode(this.state["userData"].userName));
-        span.addEventListener("click", () => {
-            location.href = "./feed.html";
+        span.addEventListener("click", async () => {
+            if (!confirm("로그아웃 하시겠습니까?")) {
+                return;
+            }
+
+            await logout();
+            getCurrentUserName().then(data => {
+                if (data === null) {
+                    this.state["userData"].userName = undefined;
+                    location.href = "./login.html";
+                } else {
+                    this.state["userData"].userName = data;
+                }
+            });
         });
         return span;
     }
