@@ -1,0 +1,72 @@
+#add-todo-view {
+    position: relative;
+    padding: 10px;
+    margin-top: 80px;
+
+    background-color: var(--light-grey);
+}
+
+.add-todo-view_input {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: white;
+    box-shadow: var(--default-shadow);
+}
+
+.add-todo-view_input:hover {
+    margin: 10px 0px;
+}
+
+#add-todo-view_repeat-day-of-week:hover {
+    margin: 10px;
+}
+
+.add-todo-view_input_title {
+    font-size: var(--large-text);
+    color: black;
+}
+
+.add-todo-view_input_body {
+    font-size: var(--middle-text);
+    color: var(--grey);
+}
+
+div.add-todo-view_input_title {
+    padding-bottom: 20px;
+}
+
+.add-todo-view_repeat-day-of-week_element {
+    display: inline-block;
+
+    padding: 10px 15px;
+    background-color: var(--grey);
+    color: white;
+    font-size: var(--middle-text);
+    margin: 0 5px;
+}
+
+.add-todo-view_repeat-day-of-week_element:hover {
+    box-shadow: var(--default-shadow);
+}
+
+.add-todo-view_repeat-day-of-week_element[selected=true] {
+    background-color: var(--primary);
+    box-shadow: var(--default-shadow);
+}
+
+#add-todo-view_submit {
+    border: none;
+    padding: 10px 20px;
+    background-color: var(--primary);
+    color: white;
+    font-size: var(--middle-text);
+    border-radius: 5px;
+
+    position: absolute;
+    right: 20px;
+    bottom: -60px;
+}
+
+#add-todo-view_submit:hover {
+    box-shadow: var(--default-shadow);
+}
