@@ -15,3 +15,17 @@ export function getDayOfWeekString(date) {
 export function getOffsetDate(date, offset) {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate()+offset);
 }
+
+/**
+ * date1, date2 비교
+ * 
+ * @param {Date} date1 
+ * @param {Date} date2 
+ */
+export function compareDate(date1, date2) {
+    if (date1.getFullYear() !== date2.getFullYear()) return false;
+    if (date1.getMonth() !== date2.getMonth()) return false;
+    if (date1.getDate() !== date2.getDate()) return false;
+
+    return true;
+}
