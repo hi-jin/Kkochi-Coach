@@ -94,3 +94,74 @@ html, body {
 }
 
 /* DATE_PICKER end */
+
+
+/* MY_PROMPT start */
+
+div#modal-barrier {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+div#modal-barrier_modal-popup {
+    padding: 20px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background-color: white;
+    border-radius: 10px;
+    min-width: 400px;
+}
+
+div#modal-barrier_modal-popup_title {
+    font-size: var(--middle-text);
+}
+
+div#modal-barrier_modal-popup_body {
+    font-size: var(--middle-text);
+    color: var(--grey);
+
+    margin-bottom: 20px;
+}
+
+div#modal-barrier_modal-popup_form {
+    text-align: right;
+}
+
+div#modal-barrier_modal-popup_form input[type="text"] {
+    background-color: var(--light-grey);
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+}
+
+div#modal-barrier_modal-popup_form input[type="button"] {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: var(--middle-text);
+    border: none;
+    color: white;
+}
+
+div#modal-barrier_modal-popup_form input[type="button"]:hover {
+    box-shadow: var(--default-shadow);
+}
+
+input#modal_save-button {
+    background-color: var(--primary);
+}
+
+input#modal_quit-button {
+    background-color: var(--grey);
+}
+
+/* MY_PROMPT end */
