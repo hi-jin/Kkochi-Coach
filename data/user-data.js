@@ -15,5 +15,6 @@ export default class UserData extends Notifier {
 
     set userName(name) {
         this._userName = name;
+        this.notifyListener();
     }
 }
