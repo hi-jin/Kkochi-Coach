@@ -60,7 +60,9 @@ export async function loadTodoList() {
             
             const result = [];
             for (const json of JSON.parse(response)) {
-                result.push(Todo.fromJson(json));
+                const todo = Todo.fromJson(json);
+                if (todo === null) continue;
+                result.push(todo);
             }
             resolve(result);
         }

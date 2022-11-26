@@ -28,6 +28,7 @@ export default class Todo {
      * @param {Map<String, any>} json 
      */
     static fromJson(json) {
+        if (json === null) return null;
         return new Todo(
             json["id"],
             json["goal"],
