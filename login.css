@@ -38,3 +38,51 @@
 
     font-size: var(--large-text);
 }
+
+#login-form {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+
+    text-align: end;
+
+    border: 1px solid black;
+    padding: 20px;
+
+    box-shadow: var(--default-shadow);
+}
+
+#login-form input[type=text], #login-form input[type=password] {
+    display: block;
+    width: 300px;
+    
+    padding: 10px;
+    margin: 10px;
+}
+
+#login-form input[type=button] {
+    padding: 10px;
+    margin: 10px;
+    min-width: 100px;
+
+    font-size: var(--middle-text);
+
+    border-radius: 3px;
+}
+
+#login-form input[type=button]:hover {
+    box-shadow: var(--default-shadow);
+}
+
+#login-form_register-button {
+    background-color: var(--grey);
+    color: white;
+    border: none;
+}
+
+#login-form_login-button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+}
