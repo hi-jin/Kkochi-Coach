@@ -13,5 +13,5 @@ export function getDayOfWeekString(date) {
  * @param {number} offset 
  */
 export function getOffsetDate(date, offset) {
-    return new Date(date.getFullYear(), date.getMonth()+1, date.getDay()+offset);
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate()+offset);
 }
