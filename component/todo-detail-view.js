@@ -1,5 +1,6 @@
 import Component from "../core/component.js";
 import HomeData from "../data/home-data.js";
+import Todo from "../domain/todo.js";
 import { finishTodo, loadTodoList, removeTodo } from "../repo/todo-repo.js";
 
 export default class TodoDetailView extends Component {
@@ -17,8 +18,7 @@ export default class TodoDetailView extends Component {
 
     render() {
         super.render();
-        this.selectedTodo = this.state["homeData"].selectedTodo;
-        if (this.state["homeData"].selectedTodo === null) return;
+        if (this.selectedTodo === null) return;
 
         this.html.appendChild(this._whatDiv.call(this));
         this.html.appendChild(this._whereWhenDiv.call(this));
@@ -156,5 +156,12 @@ export default class TodoDetailView extends Component {
             input.value = "도전성공";
             return input;
         }
+    }
+
+    /**
+     * @returns {Todo|null}
+     */
+    get selectedTodo() {
+        return this.state["homeData"].selectedTodo;
     }
 }
