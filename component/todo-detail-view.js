@@ -1,7 +1,8 @@
 import Component from "../core/component.js";
 import HomeData from "../data/home-data.js";
 import Todo from "../domain/todo.js";
-import { finishTodo, loadTodoList, removeTodo } from "../repo/todo-repo.js";
+import { clearTodo, finishTodo, loadClearLog, loadTodoList, removeTodo } from "../repo/todo-repo.js";
+import { dateToString } from "../util/date-util.js";
 
 export default class TodoDetailView extends Component {
     /**
@@ -162,6 +163,18 @@ export default class TodoDetailView extends Component {
             input.type = "button";
             input.id = "todo-detail-view_clear-button";
             input.value = "도전성공";
+
+            input.addEventListener("click", () => {
+                if (this.selectedTodo === null) return;
+                clearTodo(this.selectedTodo.id, dateToString(this.state["homeData"].selectedDate)).then(
+                    () => {
+                        loadTodoList().then(data => this.state["homeData"].todoList = data, reason => alert(reason));
+                        loadClearLog().then(data => this.state["homeData"].clearLog = data, reason => alert(reason));
+                    },
+                    reason => alert(reason),
+                );
+            })
+
             return input;
         }
     }
