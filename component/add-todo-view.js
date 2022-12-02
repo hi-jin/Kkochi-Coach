@@ -1,6 +1,6 @@
 import Component from "../core/component.js";
 import Todo from "../domain/todo.js";
-import { addTodo } from "../repo/todo-repo.js";
+import { addTodo, modifyTodo } from "../repo/todo-repo.js";
 import { myPrompt } from "../util/my-prompt.js";
 
 export default class AddTodoView extends Component {
@@ -18,6 +18,39 @@ export default class AddTodoView extends Component {
             "when": "",
             "repeatDayOfWeek": [false, false, false, false, false, false, false],
             "desc": "",
+        });
+        this.loadFromUrl.call(this);
+    }
+
+    /**
+     * 수정하기를 통해 진입 시, searchParam으로 Todo 객체가 전달됨
+     */
+    loadFromUrl() {
+        const url = new URL(location.href);
+        const urlTodo = url.searchParams.get("selected-todo");
+        if (urlTodo === null) return;
+        const objTodo = Todo.fromJson(JSON.parse(decodeURIComponent(urlTodo)));
+        if (objTodo.id === undefined || objTodo.id === null) return;
+
+        this.setTodoState.call(this, objTodo);
+    }
+
+    /**
+     * 
+     * @param {Todo} todo 
+     */
+    setTodoState(todo) {
+        const repeatDayOfWeek = [false, false, false, false, false, false, false];
+        todo.repeatDayOfWeek.forEach(idx => repeatDayOfWeek[idx] = true);
+        this.setState({
+            "goal": todo.goal,
+            "what": todo.what,
+            "where": todo.where,
+            "when": todo.when,
+            "repeatDayOfWeek": repeatDayOfWeek,
+            "desc": todo.desc,
+            "modifyId": todo.id,  // modify Id가 설정되면 수정하기 모드
+            "startDate": todo.startDate,
         });
     }
 
@@ -278,7 +311,7 @@ export default class AddTodoView extends Component {
         const input = document.createElement("input");
         input.id = "add-todo-view_submit";
         input.type = "button";
-        input.value = "추가하기";
+        input.value = (this.state["modifyId"] === undefined || this.state["modifyId"] === null) ? "추가하기" : "수정하기";
         input.addEventListener("click", async () => {
             const goal = this.state["goal"];
             const what = this.state["what"];
@@ -310,7 +343,17 @@ export default class AddTodoView extends Component {
 
             const objTodo = new Todo("-1", goal, what, where, when, _repeatDayOfWeek, desc, new Date(), null);
 
-            await addTodo(objTodo);
+            const modifyId = this.state["modifyId"];
+            if (modifyId === undefined || modifyId === null) {
+                await addTodo(objTodo);
+            } else {
+                objTodo.id = modifyId;
+                objTodo.startDate = this.state["startDate"];
+                await modifyTodo(objTodo).then(() => {
+                    alert("변경되었습니다.");
+                    location.href = "./home.html";
+                });
+            }
         });
         return input;
     }

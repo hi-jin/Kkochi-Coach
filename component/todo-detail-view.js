@@ -146,6 +146,14 @@ export default class TodoDetailView extends Component {
             input.type = "button";
             input.id = "todo-detail-view_modify-button";
             input.value = "수정하기";
+
+            input.addEventListener("click", () => {
+                if (this.selectedTodo === null) return;
+                const params = new URLSearchParams();
+                params.set("selected-todo", encodeURIComponent(this.selectedTodo.toJson()));
+                location.href = `./add-todo.html?${params}`
+            });
+
             return input;
         }
 
