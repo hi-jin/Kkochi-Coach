@@ -332,6 +332,7 @@ export default class AddTodoView extends Component {
             }
             if (flag) {
                 alert("반복 요일을 하나 이상 선택해주세요.");
+                return;
             }
 
             const _repeatDayOfWeek = [];
