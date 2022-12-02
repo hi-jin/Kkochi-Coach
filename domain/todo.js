@@ -6,7 +6,7 @@ export default class Todo {
      * @param {String} what 할 일 제목
      * @param {String} where 할 일을 수행할 장소
      * @param {String} when 수행 시각 (시기)
-     * @param {List<number>} repeatDayOfWeek  0~6의 수의 배열 (0: 일요일). 반복할 요일
+     * @param {Array<number>} repeatDayOfWeek  0~6의 수의 배열 (0: 일요일). 반복할 요일
      * @param {String} desc 할 일 설명
      * @param {Date} startDate 시작 날짜
      * @param {Date|null} endDate 종료 날짜
