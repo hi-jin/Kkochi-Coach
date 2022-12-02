@@ -111,6 +111,7 @@ export default class TodoDetailView extends Component {
             input.value = "삭제하기";
 
             input.addEventListener("click", () => {
+                if (!confirm("삭제하면 복구할 수 없습니다. 삭제하시겠어요?")) return;
                 removeTodo(this.selectedTodo.id).then(
                     data => {
                         this.state["homeData"].selectedTodo = null;
@@ -130,6 +131,7 @@ export default class TodoDetailView extends Component {
             input.value = "목표종료";
 
             input.addEventListener("click", () => {
+                if (!confirm("종료한 목표는 '나의 목표' 화면에서 확인할 수 있습니다. 종료하시겠어요?")) return;
                 finishTodo(this.selectedTodo.id).then(
                     data => {
                         this.state["homeData"].selectedTodo = null;
@@ -166,6 +168,7 @@ export default class TodoDetailView extends Component {
 
             input.addEventListener("click", () => {
                 if (this.selectedTodo === null) return;
+                if (!confirm("도전 성공으로 표시하면, 다시 되돌릴 수 없습니다. 성공으로 표시하시겠어요?")) return;
                 clearTodo(this.selectedTodo.id, dateToString(this.state["homeData"].selectedDate)).then(
                     () => {
                         loadTodoList().then(data => this.state["homeData"].todoList = data, reason => alert(reason));
