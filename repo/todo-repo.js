@@ -92,6 +92,7 @@ export async function loadClearLog() {
 
             const result = [];
             for (const json of JSON.parse(response)) {
+                if (json === null) continue;
                 result.push(ClearLog.fromJson(json));
             }
             resolve(result);
