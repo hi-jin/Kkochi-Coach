@@ -1,27 +1,9 @@
 <?php
-session_start();
+require("./core.php");
+require("./read-clear-log.php");
 
-if (!isset($_SESSION["id"])) {
-    echo "login-failed";
-    return;
-}
+if (!check_auth()) return;
 
-echo json_encode(load_clear_log(), JSON_UNESCAPED_UNICODE);
-
-
-function load_clear_log() {
-    $file_name = "../../db/log/" . $_SESSION["id"] . ".json";
-    if (!file_exists($file_name)) return [];
-
-    $result = [];
-    $file = fopen($file_name, "r");
-    while (!feof($file)) {
-        $line = fgets($file);
-        $clear_log = json_decode($line);
-        array_push($result, $clear_log);
-    }
-
-    fclose($file);
-    return $result;
-}
+$clear_log = read_clear_log($_SESSION["id"]);
+echo json_encode($clear_log, JSON_UNESCAPED_UNICODE);
 ?>

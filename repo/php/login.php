@@ -1,8 +1,10 @@
 <?php
+require("./core.php");
+
 $id = validate($_POST["id"]);
 $pw = validate($_POST["pw"]);
 
-if ($id === null || $id === "" || $pw === null || $pw === "") {
+if (!check([$id, $pw])) {
     echo "invalid-form";
     return;
 }
@@ -43,7 +45,4 @@ function login($id, $pw) {
 
     return $result;
 }
-
-function validate($input) {
-    return htmlspecialchars(stripslashes(trim($input)));
-}
+?>
