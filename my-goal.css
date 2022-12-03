@@ -1,0 +1,143 @@
+#my-goal-list-view {
+    padding-top: 70px;
+}
+
+#my-goal-list-view_scroll-div {
+    background-color: var(--light-grey);
+    max-height: 300px;
+    padding: 10px 0;
+    overflow-y: scroll;
+}
+
+.my-goal-list-view_goal-div {
+    font-size: var(--middle-text);
+    background-color: white;
+    padding: 10px 20px;
+    margin: 10px 10px;
+}
+
+.my-goal-list-view_goal-div:hover {
+    box-shadow: var(--default-shadow);
+    margin: 10px 5px;
+}
+
+.my-goal-list-view_goal-div[selected=true] {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+.my-goal-list-view_todo-count {
+    color: var(--grey);
+}
+
+
+
+#my-goal-detail-view {
+    background-color: var(--light-grey);
+    margin-top: 20px;
+    min-height: 100px;
+
+    padding: 10px;
+}
+
+#my-goal-detail-view_title {
+    font-size: var(--large-text);
+}
+
+.my-goal-detail-view_todo-div {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: white;
+}
+
+#my-goal-detail-view_todo-list-div {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.my-goal-detail-view_todo-div:hover {
+    box-shadow: var(--default-shadow);
+}
+
+.my-goal-detail-view_todo-div[selected=true] {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+canvas {
+    background-color: white;
+}
+
+
+
+
+#my-goal-todo-detail-view {
+    background-color: var(--light-grey);
+    padding-bottom: 30px;
+}
+
+.todo-detail-view_repeat-day-of-week_element {
+    display: inline-block;
+
+    padding: 10px 15px;
+    background-color: var(--grey);
+    color: white;
+    font-size: var(--middle-text);
+    margin: 0 5px;
+}
+
+.todo-detail-view_repeat-day-of-week_element[selected=true] {
+    background-color: var(--primary);
+    box-shadow: var(--default-shadow);
+}
+
+.todo-detail-view_div {
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+
+    font-size: var(--middle-text);
+}
+
+#todo-detail-view_what {
+    font-size: var(--large-text);
+}
+
+#todo-detail-view_remove-button {
+    border: none;
+    background-color: var(--accent);
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: var(--large-text);
+}
+
+#todo-detail-view_finish-button {
+    border: none;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: var(--large-text);
+}
+
+#todo-detail-view_modify-button {
+    border: none;
+    background-color: var(--grey);
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: var(--large-text);
+}
+
+#todo-detail-view_remove-button:hover {
+    box-shadow: var(--default-shadow);
+}
+
+#todo-detail-view_finish-button:hover {
+    box-shadow: var(--default-shadow);
+}
+
+#todo-detail-view_modify-button:hover {
+    box-shadow: var(--default-shadow);
+}
