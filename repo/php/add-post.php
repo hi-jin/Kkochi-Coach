@@ -18,7 +18,7 @@ if (!check([
 
 $post_list = read_post_list();
 if (count($post_list) === 0) {
-    $post->id = 0;
+    $post->id = "0";
 } else {
     $post->id = "" . ((int) $post_list[count($post_list)-1]->id + 1);
 }
