@@ -29,6 +29,7 @@ export default class MyGoalDetailView extends Component {
     render() {
         super.render();
         if (this.myGoalData.selectedGoal === null) return;
+        if (this.todoList.length === 0) return;
         this.html.appendChild(this._title.call(this));
         this.html.appendChild(document.createElement("br"));
         this.html.appendChild(document.createTextNode("(클릭하여 자세히 확인해보세요!)"));
@@ -190,7 +191,7 @@ export default class MyGoalDetailView extends Component {
     get todoList() {
         const selectedGoal = this.myGoalData.selectedGoal;
         const todoList = this.myGoalData.goalTodoMap.get(selectedGoal);
-        return todoList;
+        return todoList ?? [];
     }
 
     get clearSet() {
