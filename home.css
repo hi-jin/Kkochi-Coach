@@ -1,9 +1,5 @@
 body {
-    padding-top: 70px;
-}
-
-#todo-summary-view {
-    padding: 10px 20px;
+    padding-top: 90px;
 }
 
 #todo-summary-view_summary-wrapper {
@@ -12,10 +8,6 @@ body {
 
     padding: 10px;
     margin: 10px 0;
-}
-
-#date-picker {
-    padding: 10px 20px 0 20px;
 }
 
 .todo-summary-view_todo-summary {
@@ -75,9 +67,10 @@ body {
 }
 
 #todo-detail-view {
-    margin: 20px;
     padding: 10px;
-    background-color: var(--light-grey);;
+    background-color: var(--light-grey);
+
+    min-height: 200px;
 }
 
 .todo-detail-view_repeat-day-of-week_element {

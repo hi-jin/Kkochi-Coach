@@ -1,5 +1,5 @@
-#my-goal-list-view {
-    padding-top: 70px;
+body {
+    padding-top: 90px;
 }
 
 #my-goal-list-view_scroll-div {
@@ -65,7 +65,7 @@
 }
 
 canvas {
-    background-color: white;
+    padding: 20px;
 }
 
 
@@ -74,6 +74,7 @@ canvas {
 #my-goal-todo-detail-view {
     background-color: var(--light-grey);
     padding-bottom: 30px;
+    min-height: 200px;
 }
 
 .todo-detail-view_repeat-day-of-week_element {

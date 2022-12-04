@@ -1,7 +1,10 @@
+body {
+    padding-top: 90px;
+}
+
 #add-todo-view {
     position: relative;
     padding: 10px;
-    margin-top: 80px;
 
     background-color: var(--light-grey);
 }

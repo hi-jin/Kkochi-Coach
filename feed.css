@@ -1,11 +1,14 @@
+body {
+    padding-top: 90px;
+}
+
 #feed-list-view {
-    padding-top: 70px;
     height: calc(100vh - 70px);
     overflow-y: scroll;
 }
 
 #feed-list-view_search-box {
-    width: calc(100% - 55px);
+    width: calc(100% - 10px);
     height: 40px;
     margin: 5px;
     padding: 0 20px;
