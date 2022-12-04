@@ -2,6 +2,7 @@ import Component from "../core/component.js";
 import MyGoalData from "../data/my-goal-data.js";
 import Post from "../domain/post.js";
 import { addPost } from "../repo/post-repo.js";
+import { finishTodo, loadTodoList, removeTodo } from "../repo/todo-repo.js";
 import { dateToString } from "../util/date-util.js";
 
 export default class MyGoalTodoDetailView extends Component {
@@ -160,6 +161,16 @@ export default class MyGoalTodoDetailView extends Component {
 
             input.addEventListener("click", () => {
                 if (!confirm("삭제하면 복구할 수 없습니다. 삭제하시겠어요?")) return;
+                const selectedTodo = this.myGoalData.selectedTodo;
+                if (selectedTodo === null) return;
+
+                removeTodo(selectedTodo.id).then(
+                    data => {
+                        this.state["myGoalData"].selectedTodo = null;
+                        loadTodoList().then(value => this.state["myGoalData"].todoList = value);
+                    },
+                    reason => alert(reason),
+                );
             });
 
             return input;
@@ -173,6 +184,16 @@ export default class MyGoalTodoDetailView extends Component {
 
             input.addEventListener("click", () => {
                 if (!confirm("종료한 목표는 '나의 목표' 화면에서 확인할 수 있습니다. 종료하시겠어요?")) return;
+                const selectedTodo = this.myGoalData.selectedTodo;
+                if (selectedTodo === null) return;
+
+                finishTodo(selectedTodo.id).then(
+                    data => {
+                        this.state["myGoalData"].selectedTodo = null;
+                        loadTodoList().then(value => this.state["myGoalData"].todoList = value);
+                    },
+                    reason => alert(reason),
+                );
             });
 
             return input;
