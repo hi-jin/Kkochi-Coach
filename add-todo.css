@@ -28,7 +28,6 @@
 
 .add-todo-view_input_body {
     font-size: var(--middle-text);
-    color: var(--grey);
 }
 
 div.add-todo-view_input_title {
