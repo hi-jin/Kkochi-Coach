@@ -1,5 +1,8 @@
 import Component from "../core/component.js";
 import MyGoalData from "../data/my-goal-data.js";
+import Post from "../domain/post.js";
+import { addPost } from "../repo/post-repo.js";
+import { dateToString } from "../util/date-util.js";
 
 export default class MyGoalTodoDetailView extends Component {
     constructor(myGoalTodoDetailView) {
@@ -94,8 +97,60 @@ export default class MyGoalTodoDetailView extends Component {
         const div = document.createElement("div");
         div.appendChild(removeButton.call(this));
         if (this.myGoalData.selectedTodo.endDate === null) div.appendChild(finishButton.call(this));
+        else div.appendChild(shareButton.call(this));
         div.appendChild(modifyButton.call(this));
         return div;
+
+        function shareButton() {
+            const input = document.createElement("input");
+            input.type = "button";
+            input.id = "todo-detail-view_finish-button";
+            input.value = "공유하기";
+
+            input.addEventListener("click", () => {
+                if (!confirm("공유하시겠어요?")) return;
+
+                const selectedTodo = this.myGoalData.selectedTodo;
+                if (selectedTodo === null) return;
+
+                const clearSet = new Set();
+                for (const log of this.myGoalData.clearLog) {
+                    clearSet.add(dateToString(log.date));
+                }
+                let clearCount = 0;
+                let failCount = 0;
+                for (let date = selectedTodo.startDate; date <= new Date(); date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1)) {
+                    if (selectedTodo.repeatDayOfWeek.includes(date.getDay())) {
+                        if (clearSet.has(dateToString(date))) {
+                            clearCount += 1;
+                        } else {
+                            failCount += 1;
+                        }
+                    }
+                }
+
+                const post = new Post(
+                    "-1",
+                    "-1",
+                    selectedTodo.goal,
+                    selectedTodo.what,
+                    selectedTodo.where,
+                    selectedTodo.when,
+                    selectedTodo.repeatDayOfWeek,
+                    selectedTodo.desc,
+                    clearCount,
+                    failCount,
+                    0,
+                );
+
+                addPost(post).then(
+                    () => alert("공유되었습니다."),
+                    reason => alert(reason),
+                );
+            });
+
+            return input;
+        }
 
         function removeButton() {
             const input = document.createElement("input");
