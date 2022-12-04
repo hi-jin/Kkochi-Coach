@@ -130,6 +130,15 @@ canvas {
     font-size: var(--large-text);
 }
 
+#todo-detail-view_clear-button {
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: var(--large-text);
+}
+
 #todo-detail-view_remove-button:hover {
     box-shadow: var(--default-shadow);
 }
@@ -139,5 +148,9 @@ canvas {
 }
 
 #todo-detail-view_modify-button:hover {
+    box-shadow: var(--default-shadow);
+}
+
+#todo-detail-view_clear-button:hover {
     box-shadow: var(--default-shadow);
 }

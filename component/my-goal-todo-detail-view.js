@@ -98,14 +98,14 @@ export default class MyGoalTodoDetailView extends Component {
         const div = document.createElement("div");
         div.appendChild(removeButton.call(this));
         if (this.myGoalData.selectedTodo.endDate === null) div.appendChild(finishButton.call(this));
-        else div.appendChild(shareButton.call(this));
         div.appendChild(modifyButton.call(this));
+        div.appendChild(shareButton.call(this))
         return div;
 
         function shareButton() {
             const input = document.createElement("input");
             input.type = "button";
-            input.id = "todo-detail-view_finish-button";
+            input.id = "todo-detail-view_clear-button";
             input.value = "공유하기";
 
             input.addEventListener("click", () => {
