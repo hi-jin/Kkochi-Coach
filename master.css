@@ -27,6 +27,7 @@ html, body {
 /* HEADER start */
 
 #header {
+    z-index: 10000;
     position: fixed;
     top: 0;
     left: 0;
