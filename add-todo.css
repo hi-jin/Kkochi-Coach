@@ -72,3 +72,20 @@ div.add-todo-view_input_title {
 #add-todo-view_submit:hover {
     box-shadow: var(--default-shadow);
 }
+
+#add-todo-view_cancel {
+    border: none;
+    padding: 10px 20px;
+    background-color: var(--grey);
+    color: white;
+    font-size: var(--middle-text);
+    border-radius: 5px;
+
+    position: absolute;
+    right: 150px;
+    bottom: -60px;
+}
+
+#add-todo-view_cancel:hover {
+    box-shadow: var(--default-shadow);
+}

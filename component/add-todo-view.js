@@ -62,6 +62,7 @@ export default class AddTodoView extends Component {
         this.html.appendChild(this._when.call(this));
         this.html.appendChild(this._repeatDayOfWeek.call(this));
         this.html.appendChild(this._desc.call(this));
+        this.html.appendChild(this._cancel.call(this));
         this.html.appendChild(this._submit.call(this));
     }
 
@@ -305,6 +306,17 @@ export default class AddTodoView extends Component {
             }
             return span;
         }
+    }
+
+    _cancel() {
+        const input = document.createElement("input");
+        input.id = "add-todo-view_cancel";
+        input.type = "button";
+        input.value = "취소하기";
+        input.addEventListener("click", async () => {
+            location.href = "./home.html";
+        });
+        return input;
     }
 
     _submit() {
