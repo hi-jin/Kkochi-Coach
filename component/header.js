@@ -64,7 +64,7 @@ export default class Header extends Component {
     _userName() {
         const span = document.createElement("span");
         span.id = "header_user-name";
-        span.appendChild(document.createTextNode(this.state["userData"].userName));
+        span.appendChild(document.createTextNode("로그아웃"));
         span.addEventListener("click", async () => {
             if (!confirm("로그아웃 하시겠습니까?")) {
                 return;
